@@ -1,5 +1,11 @@
-import Image from "next/image";
+import React from "react";
 
-export default function Home() {
-  return <div className="">sss</div>;
-}
+const Page = () => {
+  return (
+    <div>
+      <h1 className="text-2xl underline">Welcome to my SaaS app</h1>
+    </div>
+  );
+};
+
+export default Page;
