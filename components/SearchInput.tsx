@@ -1,6 +1,6 @@
 "use client";
 import { formUrlQuery, removeKeysFromUrlQuery } from "@jsmastery/utils";
-import { url } from "inspector";
+
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,9 +9,9 @@ const SearchInput = () => {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const query = searchParams.get("topic") || "";
-
   const [searchQuery, setSearchQuery] = useState("");
+  console.log("pathname", pathname);
+  console.log("searchParams", searchParams);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {

@@ -1,12 +1,7 @@
 import CompanionsList from "@/components/CompanionsList";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import {
-  getBookmarkedCompanions,
-  getRecentSessions,
-  getUserCompanions,
-  getUserSessions,
-} from "@/lib/actions/companion.actions";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { getBookmarkedCompanions, getUserCompanions, getUserSessions } from "@/lib/actions/companion.actions";
+import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 

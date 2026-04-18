@@ -46,7 +46,6 @@ const CompanionsList = ({ title, companions, classNames }: CompanionListProps) =
                   className="flex items-center justify-center rounded-lg w-fit p-2 md:hidden"
                   style={{ backgroundColor: getSubjectColor(subject) }}
                 >
-                  {" "}
                   <Image src={`/icons/${subject}.svg`} alt={subject} width={18} height={18} />
                 </div>
               </TableCell>

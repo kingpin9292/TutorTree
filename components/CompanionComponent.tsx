@@ -4,9 +4,7 @@ import { vapi } from "@/lib/vapi.sdk";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { set } from "zod";
 import soundwaves from "@/constants/soundwaves.json";
-import { server } from "shadcn/mcp";
 import { addToSessionHistory } from "@/lib/actions/companion.actions";
 
 enum CallStatus {
@@ -28,9 +26,9 @@ const CompanionComponent = ({
 }: CompanionComponentProps) => {
   const [callStatus, setcallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [messages, setMessages] = useState<SavedMessage[]>([]);
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   useEffect(() => {
     if (lottieRef) {
@@ -45,7 +43,7 @@ const CompanionComponent = ({
   useEffect(() => {
     const onCallStart = () => setcallStatus(CallStatus.ACTIVE);
     const onCallEnd = () => {
-      setcallStatus(CallStatus.FINISHED), addToSessionHistory(companionId);
+      (setcallStatus(CallStatus.FINISHED), addToSessionHistory(companionId));
     };
 
     const onMessage = (message: Message) => {
@@ -112,14 +110,14 @@ const CompanionComponent = ({
 
   return (
     <section className="flex flex-col h-[70vh]">
-      <section className="flex gap-8 max-sm:flex-col">
+      <section className="flex gap-8 max-sm:flex-col ">
         <div className="companion-section">
           <div className="companion-avatar" style={{ backgroundColor: getSubjectColor(subject) }}>
             <div
               className={cn(
                 "absolute transition-opacity duration-1000",
                 callStatus === CallStatus.FINISHED || callStatus === CallStatus.INACTIVE ? "opacity-100" : "opacity-0",
-                callStatus === CallStatus.CONNECTING && "opacity-100 animate-pulse"
+                callStatus === CallStatus.CONNECTING && "opacity-100 animate-pulse",
               )}
             >
               <Image src={`/icons/${subject}.svg`} alt={subject} width={150} height={150} className="max-sm:w-fit" />
@@ -127,7 +125,7 @@ const CompanionComponent = ({
             <div
               className={cn(
                 "absolute transition-opacity duration-1000",
-                callStatus === CallStatus.ACTIVE ? "opacity-100" : "opacity-0"
+                callStatus === CallStatus.ACTIVE ? "opacity-100" : "opacity-0",
               )}
             >
               <Lottie lottieRef={lottieRef} animationData={soundwaves} autoplay={false} className="companion-lottie" />
@@ -151,15 +149,15 @@ const CompanionComponent = ({
             className={cn(
               "rounded-lg py-2 cursor-pointer transition-colors w-full text-white",
               callStatus === CallStatus.ACTIVE ? "bg-red-700" : "bg-primary",
-              callStatus === CallStatus.CONNECTING && "animate-pulse"
+              callStatus === CallStatus.CONNECTING && "animate-pulse",
             )}
             onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall}
           >
             {callStatus === CallStatus.ACTIVE
               ? "End Session"
               : callStatus === CallStatus.CONNECTING
-              ? "Connecting..."
-              : "Start Session"}
+                ? "Connecting..."
+                : "Start Session"}
           </button>
         </div>
       </section>
@@ -169,13 +167,13 @@ const CompanionComponent = ({
           {messages.map((message, index) => {
             if (message.role === "assistant") {
               return (
-                <p key={index} className="max-sm:text-sm">
+                <p key={index} className="max-sm:text-sm bg-amber-400">
                   {name.split(" ")[0].replace(/[.,]/g, " ")}: {message.content}
                 </p>
               );
             } else {
               return (
-                <p key={index} className="text-primary max-sm:text-sm">
+                <p key={index} className="text-primary max-sm:text-sm bg-amber-500">
                   {userName}: {message.content}
                 </p>
               );

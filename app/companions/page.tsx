@@ -21,7 +21,7 @@ const ComapanionsLibrary = async ({ searchParams }: SearchParams) => {
         </div>
       </section>
 
-      <section className="comapnions-grid">
+      <section className="companions-grid">
         {companions.map((companion) => (
           <CompanionCard key={companion.id} {...companion} color={getSubjectColor(companion.subject)} />
         ))}

@@ -4,14 +4,14 @@ import { getSubjectColor } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
+
 interface CompanionSessionParams {
   params: Promise<{ id: string }>;
 }
 const CompanionSession = async ({ params }: CompanionSessionParams) => {
   const { id } = await params;
   const companion = await getCompanionById(id);
-  const { name, subject, topic, voice, style, duration } = companion;
+  const { name, subject, topic, duration } = companion;
   const user = await currentUser();
 
   if (!companion) redirect("/companions");
