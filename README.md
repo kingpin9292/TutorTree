@@ -1,4 +1,3 @@
-[README (1).md](https://github.com/user-attachments/files/29429103/README.1.md)
 # TutorTree
 
 A real-time teaching platform with Vapi, integrated with an AI vocal agent that delivers interactive learning sessions.
